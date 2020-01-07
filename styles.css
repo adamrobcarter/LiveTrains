@@ -1,0 +1,105 @@
+#deps {
+	font-weight: bold;
+}
+
+table#results {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+
+tr.train {
+	color: #fff;
+	background-color: #49f;
+}
+
+.passed {
+	background-color: #8bf !important;
+}
+.actual {
+	background-color: #258 !important;
+}
+
+#results td, #calling td {
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 4px 0px 4px 0px;
+	border-top: 2px solid #8bf;
+	border-bottom: 2px solid #8bf;
+}
+
+
+td div {
+	overflow: hidden;
+	white-space: nowrap;
+}
+#results td:nth-child(2), #calling td:nth-child(2) {
+	padding: 0px 5px 0px 5px;
+}
+
+.ontime {
+}
+.delayed {
+}
+.cancelled {
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#results col.l, #results col.r {
+	width: 19%
+}
+
+#calling col.l, #calling col.r {
+	width: 21%
+}
+
+input {
+	font-size: 15px;
+	width: 98%;
+}
+
+tr[data-selected="true"] {
+	background-color: #8bf;
+}
+
+#train-popup {
+	width: 100%;
+	background-color: #38d;
+	position: absolute;
+	top: 0;
+	height: 100%;
+    background-color:rgba(51, 136, 221, 0.7)
+}
+
+#train-popup table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	opacity:1;
+	margin: 5%;
+	width: 90%;
+    background-color:rgba(51, 136, 221, 1)
+}
+
+#nav-keys {
+	z-index: 10;
+	color: white;
+	background-color: #333;
+	position: fixed;
+	bottom: 0;
+}
+#nav-keys table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+
+p {
+	margin: 10px 0px 10px 0px;
+}
+	
