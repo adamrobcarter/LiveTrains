@@ -6,35 +6,32 @@
 
     <title>Hello World</title>
 
-    <style>
-		.page-container {
-			padding: 25% !important;
-		}
-		input {
-			font-size: 20px;
-			width: 50%
-		}
-    </style>
-
     <script src="jquery.js" defer></script>
     <script src="app.js" defer></script>
-    <script src="index.js" defer></script>
+    <script src="details.js" defer></script>
 	
 	<link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
 	<div class="page-container">
-		<h2>Enter station:</h2>
-		<form action="trains.html">
-			<p><input name="crs" type=text placeholder="crs" id="crs-input"></input></p>
-		</form>
+		<table id="calling">
+			<thead>
+				<colgroup>
+					<col class="l"></col>
+					<col class="c"></col>
+					<col class="r"></col>
+				</colgroup>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 	</div>
 	<div class="nav-keys">
 		<table>
 			<tr>
-				<td id="left" class="nav"></td>
-				<td id="centre" class="nav">go</td>
+				<td id="left" class="nav">back</td>
+				<td id="centre" class="nav"></td>
 				<td id="right" class="nav"></td>
 			</tr>
 		</table>

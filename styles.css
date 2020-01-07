@@ -54,17 +54,8 @@ body {
 	padding: 0px;
 }
 
-#results col.l, #results col.r {
+#results col.l, #results col.r, #calling col.l, #calling col.r {
 	width: 19%
-}
-
-#calling col.l, #calling col.r {
-	width: 21%
-}
-
-input {
-	font-size: 15px;
-	width: 98%;
 }
 
 tr[data-selected="true"] {
@@ -105,6 +96,7 @@ table#layout {
 	table-layout: fixed;
 	position: relative;
 }
-.page-container {
+.page-container.trains {
 	overflow: auto;
 	height: 270px;
+}
