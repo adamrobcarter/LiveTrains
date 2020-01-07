@@ -17,7 +17,7 @@ window.addEventListener("load", function() {
 		selected = null;
 		if (resp.trainServices && resp.trainServices.length > 0) {
 			resp.trainServices.forEach(function (train, index) {
-				if(train.destination[0].crs != crs){
+				if(train.destination[0].crs != resp.crs){
 					if(train.cancelReason){
 						$("#results tbody").append("<tr class='train cancelled'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName + "</div></td><td>cancelled</td></tr>");
 					} else {
@@ -43,26 +43,28 @@ window.addEventListener("load", function() {
 	
 	arrowUp = function() {
 		console.log("arrow up");
-		selected.attr("data-selected","false");
-		selected = selected.prev().attr("data-selected","true");
-		console.log(selected.offset().top - $("#results-page .page-container").scrollTop());
-		console.log(selected.outerHeight());
-		if(selected.offset().top - $("#results-page .page-container").scrollTop() < 30){
-			$("#results-page .page-container").scrollTop( 
-				 - selected.outerHeight() + $("#results-page .page-container").scrollTop()
-			);
+		if(selected.prev().is("tr")){
+			selected.attr("data-selected","false");
+			selected = selected.prev().attr("data-selected","true");
+			console.log(selected.offset().top - $(window).scrollTop());
+			console.log(selected.outerHeight());
+			if(selected.offset().top - $(window).scrollTop() < 30){
+				console.log(- selected.outerHeight() + $(window).scrollTop());
+				$(window).scrollTop( - selected.outerHeight() + $(window).scrollTop() );
+			}
 		}
 	}
 	arrowDown = function() {
 		console.log("arrow down");
-		selected.attr("data-selected","false");
-		selected = selected.next().attr("data-selected","true");
-		console.log(selected.offset().top - $("#results-page .page-container").scrollTop());
-		console.log(selected.outerHeight());
-		if(selected.offset().top - $("#results-page .page-container").scrollTop() > 180){
-			$("#results-page .page-container").scrollTop( 
-				selected.outerHeight() + $("#results-page .page-container").scrollTop()
-			);
+		if(selected.next().is("tr")){
+			selected.attr("data-selected","false");
+			selected = selected.next().attr("data-selected","true");
+			console.log(selected.offset().top - $(window).scrollTop());
+			console.log(selected.outerHeight());
+			if(selected.offset().top - $(window).scrollTop() > 200){
+				console.log(selected.outerHeight() + $(window).scrollTop());
+				$(window).scrollTop( selected.outerHeight() + $(window).scrollTop()	);
+			}
 		}
 	}
 	

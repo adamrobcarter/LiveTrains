@@ -13,8 +13,11 @@ tr.train {
 	background-color: #49f;
 }
 
-.passed {
+.to-pass {
 	background-color: #8bf !important;
+}
+.passed {
+	background-color: #6af !important;
 }
 .actual {
 	background-color: #258 !important;
@@ -28,7 +31,6 @@ tr.train {
 	border-top: 2px solid #8bf;
 	border-bottom: 2px solid #8bf;
 }
-
 
 td div {
 	overflow: hidden;
@@ -59,7 +61,7 @@ body {
 }
 
 tr[data-selected="true"] {
-	background-color: #8bf;
+	background-color: #258;
 }
 
 table#calling {
@@ -96,7 +98,6 @@ table#layout {
 	table-layout: fixed;
 	position: relative;
 }
-.page-container.trains {
-	overflow: auto;
-	height: 270px;
+.hidden {
+	visibility: hidden;
 }

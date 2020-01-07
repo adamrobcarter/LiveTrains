@@ -7,21 +7,32 @@ window.addEventListener("load", function() {
 	.done(function(resp){
 		console.log(resp);
 		$("#calling tbody").empty();
+			
+		if(resp.previousCallingPoints){
+			resp.previousCallingPoints[0].callingPoint.forEach(function (point, index) {
+				if(point.at){
+					$("#calling tbody").append("<tr class='train ontime passed'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.at + "</td></tr>");
+				} else {
+					$("#calling tbody").append("<tr class='train ontime to-pass'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et + "</td></tr>");
+				}
+			});
+		}
+		
 		if(resp.isCancelled){
 			$("#calling tbody").append("<tr class='cancel'><td colspan=3>" + resp.cancelReason + "</td></tr>");
 		} else if(resp.delayReason) {
 			$("#calling tbody").append("<tr class='cancel'><td colspan=3>" + resp.delayReason + "</td></tr>");
 		}
-			
-		if(resp.previousCallingPoints){
-			resp.previousCallingPoints[0].callingPoint.forEach(function (point, index) {
-				$("#calling tbody").append("<tr class='train ontime passed'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.at + "</td></tr>");
-			});
+		var scrollTo = 0;
+		if($("#calling tbody tr").length){
+			scrollTo = $("#calling tbody tr").last().offset().top;
 		}
+		
 		$("#calling tbody").append("<tr class='train ontime actual'><td>" + resp.std + "</td><td><div>" + resp.locationName + "<div></td><td>" + resp.etd + "</td></tr>");
 		resp.subsequentCallingPoints[0].callingPoint.forEach(function (point, index) {
 			$("#calling tbody").append("<tr class='train ontime'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et + "</td></tr>");
 		});
+		$(window).scrollTop(scrollTo);
 	});
 	
 	$(document).keypress(function(e){
@@ -35,7 +46,7 @@ window.addEventListener("load", function() {
 				window.history.back()
 				break;
 			
-			case "ArrowDown":
+			/*case "ArrowDown":
 				arrowDown();
 				e.preventDefault();
 				break;
@@ -49,7 +60,7 @@ window.addEventListener("load", function() {
 				window.location.href = "details.html?id=" + selected.attr("data-trainId");
 				e.preventDefault();
 				break;
-				
+				*/
 		}
 	});
 });
