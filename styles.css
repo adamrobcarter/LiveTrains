@@ -38,6 +38,10 @@ td div {
 	padding: 0px 5px 0px 5px;
 }
 
+tr.cancel td {
+	white-space: normal !important;
+}
+
 .ontime {
 }
 .delayed {
@@ -67,39 +71,40 @@ tr[data-selected="true"] {
 	background-color: #8bf;
 }
 
-#train-popup {
-	width: 100%;
-	background-color: #38d;
-	position: absolute;
-	top: 0;
-	height: 100%;
-    background-color:rgba(51, 136, 221, 0.7)
-}
-
-#train-popup table {
+table#calling {
 	border-collapse: collapse;
 	table-layout: fixed;
-	opacity:1;
-	margin: 5%;
-	width: 90%;
-    background-color:rgba(51, 136, 221, 1)
+	width: 100%;
 }
 
-#nav-keys {
+.nav-keys {
 	z-index: 10;
 	color: white;
 	background-color: #333;
 	position: fixed;
 	bottom: 0;
 }
-#nav-keys table {
+.nav-keys table {
 	table-layout: fixed;
 	border-collapse: collapse;
-	width: 100%;
+	width: 240px;
 	text-align: center;
 }
 
 p {
 	margin: 10px 0px 10px 0px;
 }
-	
+
+td.page {
+	width:240px;
+	padding: 0px;
+	/*height: 270px;*/
+}
+table#layout {
+	width: 720px;
+	table-layout: fixed;
+	position: relative;
+}
+.page-container {
+	overflow: auto;
+	height: 270px;

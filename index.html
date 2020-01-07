@@ -17,44 +17,74 @@
   </head>
 
   <body>
-	<p id="deps">Departures for <span id="dep-for"></span>
-	<form action="javascript:void(0);">
-		<p><input type=text placeholder="crs" id="crs-input"></input></p>
-	</form>
-	<table id="results">
-		<thead>
-			<colgroup>
-				<col class="l"></col>
-				<col class="c"></col>
-				<col class="r"></col>
-			</colgroup>
-		</thead>
-		<tbody>
-		</tbody>
+	<table id="layout">
+		<tr>
+			<td id="input-page" class="page">
+				<div class="page-container">
+					<form action="javascript:void(0);">
+						<p><input type=text placeholder="crs" id="crs-input"></input></p>
+					</form>
+				</div>
+				<div class="nav-keys">
+					<table>
+						<tr>
+							<td id="left" class="nav"></td>
+							<td id="centre" class="nav">go</td>
+							<td id="right" class="nav"></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td id="results-page" class="page">
+				<div class="page-container">
+					<p id="deps">Departures for <span id="dep-for"></span>
+					<table id="results">
+						<thead>
+							<colgroup>
+								<col class="l"></col>
+								<col class="c"></col>
+								<col class="r"></col>
+							</colgroup>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="nav-keys">
+					<table>
+						<tr>
+							<td id="left" class="nav">back</td>
+							<td id="centre" class="nav">view</td>
+							<td id="right" class="nav"></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td id="details-page" class="page">
+				<div class="page-container">
+					<table id="calling">
+						<thead>
+							<colgroup>
+								<col class="l"></col>
+								<col class="c"></col>
+								<col class="r"></col>
+							</colgroup>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="nav-keys">
+					<table>
+						<tr>
+							<td id="left" class="nav">back</td>
+							<td id="centre" class="nav"></td>
+							<td id="right" class="nav"></td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
 	</table>
-	<div id="train-popup">
-		<table id="calling">
-			<thead>
-				<colgroup>
-					<col class="l"></col>
-					<col class="c"></col>
-					<col class="r"></col>
-				</colgroup>
-			</thead>
-			<tbody>
-			</tbody>
-	</table>
-	</div>
-	
-	<div id="nav-keys">
-		<table>
-			<tr>
-				<td id="left" class="nav"></td>
-				<td id="centre" class="nav"></td>
-				<td id="right" class="nav">go</td>
-			</tr>
-		</table>
-	</div>
   </body>
-
 </html>
