@@ -8,23 +8,27 @@ window.addEventListener("load", function() {
 	var arrowDown = null;
 	
 	var crs = getUrlParameter("crs");
+	crs = crs.replace(".","/to/");
+	
 	console.log("getting departures for " + crs);
-	$.ajax("https://huxley.apphb.com/all/" + crs + "/25?accessToken=3c6cc25e-5d90-4be5-a3fb-7c05f05348c5")
+	$.ajax("https://huxley.apphb.com/departures/" + crs + "/25?accessToken=3c6cc25e-5d90-4be5-a3fb-7c05f05348c5")
 	.done(function(resp) {
-		$("#dep-for").text(resp.locationName + " (" + resp.crs + ")");
+		if(resp.filtercrs){
+			$("#dep-for").text(resp.locationName + " (" + resp.crs + ") to " + resp.filterLocationName + " (" + resp.filtercrs + ")");
+		} else {
+			$("#dep-for").text(resp.locationName + " (" + resp.crs + ")");
+		}
 		console.log(resp);
 		$("#results tbody").empty();
 		selected = null;
 		if (resp.trainServices && resp.trainServices.length > 0) {
 			resp.trainServices.forEach(function (train, index) {
-				if(train.destination[0].crs != resp.crs){
-					if(train.cancelReason){
-						$("#results tbody").append("<tr class='train cancelled'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName + "</div></td><td>cancelled</td></tr>");
-					} else {
-						$("#results tbody").append("<tr class='train delayed'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName + "</div></td><td>" + train.etd + "</td></tr>");
-					}
-					$("#results tbody tr:last-child").attr("data-trainId",train.serviceIdUrlSafe);
+				if(train.cancelReason){
+					$("#results tbody").append("<tr class='train cancelled'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName + "</div></td><td>cancelled</td></tr>");
+				} else {
+					$("#results tbody").append("<tr class='train delayed'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName + "</div></td><td>" + train.etd + "</td></tr>");
 				}
+				$("#results tbody tr:last-child").attr("data-trainId",train.serviceIdUrlSafe);
 			});
 			
 			selected = $($("#results tr")[0]).attr("data-selected","true");

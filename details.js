@@ -32,6 +32,10 @@ window.addEventListener("load", function() {
 		resp.subsequentCallingPoints[0].callingPoint.forEach(function (point, index) {
 			$("#calling tbody").append("<tr class='train ontime'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et + "</td></tr>");
 		});
+		
+		
+		$("#calling tbody").append("<tr class='cancel'><td colspan=3>Operated by " + resp.operator + "</td></tr>");
+		
 		$(window).scrollTop(scrollTo);
 	});
 	
