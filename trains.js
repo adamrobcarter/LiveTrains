@@ -91,6 +91,7 @@ window.addEventListener("load", function() {
 				break;
 			
 			case "ArrowDown":
+			case "]":
 				arrowDown();
 				e.preventDefault();
 				break;

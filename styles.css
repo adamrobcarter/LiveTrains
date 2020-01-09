@@ -2,17 +2,19 @@
 	font-weight: bold;
 }
 
-table#results {
+table#results, table#calling-mult {
 	border-collapse: collapse;
 	width: 100%;
 	table-layout: fixed;
 }
 
-tr.train {
-	color: #fff;
+.train {
 	background-color: #49f;
 }
 
+.upcoming {
+	background-color: #49f;
+}
 .to-pass {
 	background-color: #8bf !important;
 }
@@ -29,6 +31,23 @@ tr.train {
 	white-space: nowrap;
 	padding: 4px 0px 4px 0px;
 	border-top: 2px solid #8bf;
+	border-bottom: 2px solid #8bf;
+}
+
+#calling-mult td {
+	text-align: center;
+	overflow: initial;
+	white-space: initial;
+	padding: 4px 0px 4px 0px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#calling-mult .sta {
+	border-top: 2px solid #8bf;
+}
+
+#calling-mult td.times {
 	border-bottom: 2px solid #8bf;
 }
 
@@ -111,4 +130,10 @@ tr[data-selected=true] span.platform {
 }
 span.via {
 	color: rgba(255,255,255,0.7);
+}
+tr.mult-train.sta td.sta:first-child {
+	border-right: 2px solid #8bf;
+}
+tr.mult-train.times td:nth-child(3) {
+	border-left: 2px solid #8bf;
 }
