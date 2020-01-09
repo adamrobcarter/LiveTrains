@@ -32,9 +32,14 @@ tr.train {
 	border-bottom: 2px solid #8bf;
 }
 
+tr[data-selected=true] td {
+	border-color: #49f !important;
+}
+
 td div {
 	overflow: hidden;
 	white-space: nowrap;
+	position: relative;
 }
 #results td:nth-child(2), #calling td:nth-child(2) {
 	padding: 0px 5px 0px 5px;
@@ -55,7 +60,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: white;
-	background-color: black;
+	background-color: #333;
 }
 
 #results col.l, #results col.r, #calling col.l, #calling col.r {
@@ -82,7 +87,7 @@ table#calling {
 .nav-keys table {
 	table-layout: fixed;
 	border-collapse: collapse;
-	width: 240px;
+	width: 100%;
 	text-align: center;
 }
 
@@ -90,16 +95,20 @@ p {
 	margin: 10px 0px 10px 0px;
 }
 
-td.page {
-	width:240px;
-	padding: 0px;
-	/*height: 270px;*/
-}
-table#layout {
-	width: 720px;
-	table-layout: fixed;
-	position: relative;
-}
 .hidden {
 	visibility: hidden;
+}
+
+span.platform {
+	position: absolute;
+	right: 0px;
+	background-color: #49f;
+	font-size: 10px;
+	bottom: -2px;
+}
+tr[data-selected=true] span.platform {
+	background-color: #258;
+}
+span.via {
+	color: rgba(255,255,255,0.7);
 }

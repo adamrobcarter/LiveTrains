@@ -10,10 +10,11 @@ window.addEventListener("load", function() {
 			
 		if(resp.previousCallingPoints){
 			resp.previousCallingPoints[0].callingPoint.forEach(function (point, index) {
+				var plat = point.platform ? point.platform : "";
 				if(point.at){
-					$("#calling tbody").append("<tr class='train ontime passed'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.at + "</td></tr>");
+					$("#calling tbody").append("<tr class='train ontime passed'><td>" + point.st + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + point.at.toLowerCase() + "</td></tr>");
 				} else {
-					$("#calling tbody").append("<tr class='train ontime to-pass'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et + "</td></tr>");
+					$("#calling tbody").append("<tr class='train ontime to-pass'><td>" + point.st + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + point.et.toLowerCase() + "</td></tr>");
 				}
 			});
 		}
@@ -28,13 +29,13 @@ window.addEventListener("load", function() {
 			scrollTo = $("#calling tbody tr").last().offset().top;
 		}
 		
-		$("#calling tbody").append("<tr class='train ontime actual'><td>" + resp.std + "</td><td><div>" + resp.locationName + "<div></td><td>" + resp.etd + "</td></tr>");
+		$("#calling tbody").append("<tr class='train ontime actual'><td>" + resp.std + "</td><td><div>" + resp.locationName + "<div></td><td>" + resp.etd.toLowerCase() + "</td></tr>");
 		resp.subsequentCallingPoints[0].callingPoint.forEach(function (point, index) {
-			$("#calling tbody").append("<tr class='train ontime'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et + "</td></tr>");
+			$("#calling tbody").append("<tr class='train ontime'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et.toLowerCase() + "</td></tr>");
 		});
 		
-		
-		$("#calling tbody").append("<tr class='cancel'><td colspan=3>Operated by " + resp.operator + "</td></tr>");
+		var length = resp.length ? "Formed of " + resp.length.toString() + " carriages<br />" : "";
+		$("#calling tbody").append("<tr class='cancel'><td colspan=3>" + length + "Operated by " + resp.operator + "</td></tr>");
 		
 		$(window).scrollTop(scrollTo);
 	});
