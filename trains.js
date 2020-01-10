@@ -10,6 +10,25 @@ window.addEventListener("load", function() {
 	var crs = getUrlParameter("crs");
 	crs = crs.replace(".","/to/");
 	
+	var codeRemap = function(code){
+		switch(code){
+			case "GR":
+				return "LN";
+				break;
+			case "AW":
+				return "TW";
+				break;
+			case "VT":
+				return "WC";
+				break;
+			case "XR":
+				return "TF";
+				break;
+			default:
+				return code;
+		}
+	}
+	
 	console.log("getting departures for " + crs);
 	$.ajax("https://huxley.apphb.com/departures/" + crs + "/25?accessToken=3c6cc25e-5d90-4be5-a3fb-7c05f05348c5")
 	.done(function(resp) {
@@ -26,6 +45,7 @@ window.addEventListener("load", function() {
 				var trainStr = "<tr class='train'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName
 				trainStr += train.destination[1] ? " and others" : "";
 				trainStr += train.destination[0].via ? "<span class='via'> " + train.destination[0].via + "</span>" : "";
+				trainStr += "<span class='operator " + train.operatorCode + "'>" + codeRemap(train.operatorCode) + "</span>";
 				trainStr += "<span class='platform'>" 
 				trainStr += train.platform ? train.platform : "";
 				trainStr += "</span></div></td>";
@@ -48,6 +68,8 @@ window.addEventListener("load", function() {
 	.fail(function(data) {
 		console.log("request failed");
 		console.log(data);
+		alert(crs + " is not a valid CRS code");
+		window.location.href = 'index.html';
 	})
 	.always(function() {
 	});
@@ -84,6 +106,7 @@ window.addEventListener("load", function() {
 		switch(e.key){
 			case "SoftRight":
 			case "Shift":
+				location.reload();
 				break;
 			case "SoftLeft":
 			case "Control":

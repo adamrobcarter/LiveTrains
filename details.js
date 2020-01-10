@@ -95,7 +95,7 @@ window.addEventListener("load", function() {
 						if(point){
 							tr.append("<td class='sta' colspan=2>" + point.locationName + "</td>");
 						} else {
-							tr.append("<td class='sta' colspan=2></td>");
+							tr.append("<td class='sta null' colspan=2></td>");
 						}
 					});
 					$("#calling-mult").append("<tr class='mult-train times upcoming'></tr>");
@@ -108,7 +108,7 @@ window.addEventListener("load", function() {
 							var et = point.et ? point.et.toLowerCase() : 'fix';
 							tr.append("<td class='times'>" + point.st + "</td><td class='times'>" + et + "</td>");
 						} else {
-							tr.append("<td class='times'></td><td class='times'></td>");
+							tr.append("<td class='times null'></td><td class='times null'></td>");
 						}
 					});
 				}
@@ -132,6 +132,7 @@ window.addEventListener("load", function() {
 		switch(e.key){
 			case "SoftRight":
 			case "Shift":
+				location.reload();
 				break;
 			case "SoftLeft":
 			case "Control":

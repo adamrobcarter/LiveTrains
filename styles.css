@@ -12,16 +12,16 @@ table#results, table#calling-mult {
 	background-color: #49f;
 }
 
-.upcoming {
+.upcoming td {
 	background-color: #49f;
 }
-.to-pass {
+.to-pass td {
 	background-color: #8bf !important;
 }
-.passed {
+.passed td {
 	background-color: #6af !important;
 }
-.actual {
+.actual td {
 	background-color: #258 !important;
 }
 
@@ -30,29 +30,30 @@ table#results, table#calling-mult {
 	overflow: hidden;
 	white-space: nowrap;
 	padding: 4px 0px 4px 0px;
-	border-top: 2px solid #8bf;
-	border-bottom: 2px solid #8bf;
+	border-top: 1px solid #8bf;
+	border-bottom: 1px solid #8bf;
 }
 
 #calling-mult td {
 	text-align: center;
 	overflow: initial;
 	white-space: initial;
-	padding: 4px 0px 4px 0px;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-#calling-mult .sta {
-	border-top: 2px solid #8bf;
+#calling-mult td.sta {
+	border-top: 1px solid #8bf;
+	padding: 4px 0px 2px 0px;
 }
 
 #calling-mult td.times {
-	border-bottom: 2px solid #8bf;
+	border-bottom: 1px solid #8bf;
+	padding: 0px 0px 4px 0px;
 }
 
 tr[data-selected=true] td {
-	border-color: #49f !important;
+	/*border-color: #49f !important;*/
 }
 
 td div {
@@ -122,18 +123,59 @@ span.platform {
 	position: absolute;
 	right: 0px;
 	background-color: #49f;
-	font-size: 10px;
+	font-size: 11px;
 	bottom: -2px;
+	border-radius: 3px;
 }
 tr[data-selected=true] span.platform {
 	background-color: #258;
 }
+
+span.operator {
+	position: absolute;
+	right: 0px;
+	font-size: 11px;
+	top: -2px;
+	border-radius: 3px;
+}
+
+.SR { background-color: #1c4074; } /* scotrail */
+.CS { background-color: rgb(0, 57, 65); } /* caledonian sleeper */
+.EM { background-color: rgb(71, 20, 58); } /* east midlands */
+.NT { background-color: #262262; } /* northern */
+.GR { background-color: #ce0e2d; } /* lner */
+.TP { background-color: #0384b7; } /* tpe modified */
+.XC { background-color: #880038; } /* cross country */
+.GW { background-color: #0a493e; } /* gwr */
+.LO { background-color: rgb(239, 123, 16); } /* london overground */
+.LE { background-color: #aaa; } /* greater anglia */
+.GX { background-color: #c82828; } /* gatwick express */
+.HX { background-color: #5d226c; } /* heathrow express */
+.SW { background-color: #24398c; } /* south western */
+.SE { background-color: #00afe8; } /* south eastern */
+.SN { background-color: #8cc63e; } /* southern */
+.XR { background-color: rgb(0, 25, 168); } /* tfl rail */
+.LM { background-color: #ff8200; } /* west midlands */
+.ES { background-color: #ffd700; color:black; } /* eurostar */
+.TL { background-color: #aaa; } /* thameslink */
+.VT { background-color: #000; } /* west coast */
+.AW { } /* wales */
+.GN { } /* great northern */
+/* https://en.wikipedia.org/wiki/Wikipedia:WikiProject_UK_Railways/Colours_list#Current_UK_train_operating_companies */
+
 span.via {
 	color: rgba(255,255,255,0.7);
 }
 tr.mult-train.sta td.sta:first-child {
-	border-right: 2px solid #8bf;
+	border-right: 1px solid #8bf;
 }
 tr.mult-train.times td:nth-child(3) {
-	border-left: 2px solid #8bf;
+	border-left: 1px solid #8bf;
+}
+.null {
+	background-color: inherit !important;
+	border: none !important;
+}
+tr.mult-train.times td {
+	font-size: 14px;
 }
