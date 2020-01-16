@@ -1,45 +1,5 @@
 window.addEventListener("load", function() {
-	var selected = null;
-	
-	var leftPress = null;
-	var centrePress = null;
-	var rightPress = null;
-	var arrowUp = null;
 	var arrowDown = null;
-	
-	var goToTrains = function() {
-		console.log("go to trains");
-		$("table#layout").css("left","-240px");
-		leftPress = goToInput;
-		rightPress = loadDetail;
-		
-		arrowUp = function() {
-			console.log("arrow up");
-			selected.attr("data-selected","false");
-			selected = selected.prev().attr("data-selected","true");
-			console.log(selected.offset().top - $("#results-page .page-container").scrollTop());
-			console.log(selected.outerHeight());
-			if(selected.offset().top - $("#results-page .page-container").scrollTop() < 30){
-				$("#results-page .page-container").scrollTop( 
-					 - selected.outerHeight() + $("#results-page .page-container").scrollTop()
-				);
-			}
-		}
-		arrowDown = function() {
-			console.log("arrow down");
-			selected.attr("data-selected","false");
-			selected = selected.next().attr("data-selected","true");
-			console.log(selected.offset().top - $("#results-page .page-container").scrollTop());
-			console.log(selected.outerHeight());
-			if(selected.offset().top - $("#results-page .page-container").scrollTop() > 180){
-				$("#results-page .page-container").scrollTop( 
-					selected.outerHeight() + $("#results-page .page-container").scrollTop()
-				);
-			}
-		}
-		centrePress = loadDetail;
-	}
-	
 	
 	$("#crs-input").focus();
 
@@ -59,3 +19,17 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+var processTime = function(time) {
+	if(time == "On time"){
+		return "on";
+	} else {
+		return time;
+	}
+}
+
+var howLate = function(t1, t2) {
+	var d1 = Date.parse("1970-01-01 " + t1);
+	var d2 = Date.parse("1970-01-01 " + t2);
+	return d2 - d1;
+}

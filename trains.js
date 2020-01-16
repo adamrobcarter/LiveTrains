@@ -42,9 +42,9 @@ window.addEventListener("load", function() {
 		selected = null;
 		if (resp.trainServices && resp.trainServices.length > 0) {
 			resp.trainServices.forEach(function (train, index) {
-				var trainStr = "<tr class='train'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName
+				var trainStr = "<tr class='train" + ( train.etd != "On time" ? " late" : "" ) + "'><td>" + train.std + "</td><td><div>" + train.destination[0].locationName
 				trainStr += train.destination[1] ? " and others" : "";
-				trainStr += train.destination[0].via ? "<span class='via'> " + train.destination[0].via + "</span>" : "";
+				trainStr += train.destination[0].via ? "<span class='via'> v " + train.destination[0].via.slice(4) + "</span>" : "";
 				trainStr += "<span class='operator " + train.operatorCode + "'>" + codeRemap(train.operatorCode) + "</span>";
 				trainStr += "<span class='platform'>" 
 				trainStr += train.platform ? train.platform : "";
@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
 				if(train.isCancelled){
 					trainStr += "<td>cancelled</td></tr>";
 				} else {
-					trainStr += "<td>" + train.etd.toLowerCase() + "</td></tr>";
+					trainStr += "<td>" + processTime(train.etd) + "</td></tr>";
 				}
 				$("#results tbody").append(trainStr);
 				$("#results tbody tr:last-child").attr("data-trainId",train.serviceIdUrlSafe);

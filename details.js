@@ -11,10 +11,14 @@ window.addEventListener("load", function() {
 		if(resp.previousCallingPoints){
 			resp.previousCallingPoints[0].callingPoint.forEach(function (point, index) {
 				var plat = point.platform ? point.platform : "";
+				console.log(point.st);
+				console.log(point.et);
+				console.log(point.at);
+				console.log("\n");
 				if(point.at){
-					$("#calling tbody").append("<tr class='train ontime passed'><td>" + point.st + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + point.at.toLowerCase() + "</td></tr>");
+					$("#calling tbody").append("<tr class='train ontime passed" + ( point.at != "On time" ? " late" : "" ) + "'><td>" + processTime(point.st) + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + processTime(point.at) + "</td></tr>");
 				} else {
-					$("#calling tbody").append("<tr class='train ontime to-pass'><td>" + point.st + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + point.et.toLowerCase() + "</td></tr>");
+					$("#calling tbody").append("<tr class='train ontime to-pass" + ( point.et != "On time" ? " late" : "" ) + "'><td>" + processTime(point.st) + "</td><td><div>" + point.locationName + "<span class='platform'>" + plat + "</span><div></td><td>" + processTime(point.et) + "</td></tr>");
 				}
 			});
 		}
@@ -28,8 +32,8 @@ window.addEventListener("load", function() {
 		if($("#calling tbody tr").length){
 			scrollTo = $("#calling tbody tr").last().offset().top;
 		}
-		var etd = resp.etd ? resp.etd.toLowerCase() : resp.atd.toLowerCase();
-		$("#calling tbody").append("<tr class='train ontime actual'><td>" + resp.std + "</td><td><div>" + resp.locationName + "<div></td><td>" + etd + "</td></tr>");
+		var etd = resp.etd ? processTime(resp.etd) : processTime(resp.atd);
+		$("#calling tbody").append("<tr class='train ontime actual" + ( resp.atd == resp.std || etd == "on" ? "" : " late" ) + "'><td>" + resp.std + "</td><td><div>" + resp.locationName + "<div></td><td>" + etd + "</td></tr>");
 		
 		if(resp.subsequentCallingPoints.length > 1){
 			var maxlength=0;
@@ -85,8 +89,8 @@ window.addEventListener("load", function() {
 					console.log("points1");
 					point = points[0];
 					
-					var et = point.et ? point.et.toLowerCase() : point.at;
-					tr.append("<td>" + point.st + "</td><td class='sta' colspan=2>" + point.locationName + "</td><td>" + et + "</td>");
+					var et = point.et ? processTime(point.et) : processTime(point.at);
+					tr.append("<td>" + processTime(point.st) + "</td><td class='sta' colspan=2>" + point.locationName + "</td><td>" + et + "</td>");
 					// one row at start
 				} else {
 					
@@ -105,8 +109,8 @@ window.addEventListener("load", function() {
 					resp.subsequentCallingPoints.forEach(function(p, index){
 						point = p.callingPoint[i];
 						if(point){
-							var et = point.et ? point.et.toLowerCase() : 'fix';
-							tr.append("<td class='times'>" + point.st + "</td><td class='times'>" + et + "</td>");
+							var et = point.et ? processTime(point.et) : 'fix';
+							tr.append("<td class='times'>" + processTime(point.st) + "</td><td class='times'>" + et + "</td>");
 						} else {
 							tr.append("<td class='times null'></td><td class='times null'></td>");
 						}
@@ -116,7 +120,7 @@ window.addEventListener("load", function() {
 			$("#calling-mult").addClass("active");
 		} else {
 			resp.subsequentCallingPoints[0].callingPoint.forEach(function (point, index) {
-				$("#calling tbody").append("<tr class='upcoming'><td>" + point.st + "</td><td><div>" + point.locationName + "<div></td><td>" + point.et.toLowerCase() + "</td></tr>");
+				$("#calling tbody").append("<tr class='upcoming" + ( point.et != "On time" ? " late" : "" ) + "'><td>" + processTime(point.st) + "</td><td><div>" + point.locationName + "<div></td><td>" + processTime(point.et) + "</td></tr>");
 				$("#calling").addClass("active");
 			});
 		}
