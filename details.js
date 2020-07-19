@@ -3,7 +3,7 @@ window.addEventListener("load", function() {
 	
 	var id = getUrlParameter("id");
 				
-	$.ajax("https://huxley.apphb.com/service/" + id + "?accessToken=3c6cc25e-5d90-4be5-a3fb-7c05f05348c5")
+	$.ajax(api_url + "/service/" + id + "?accessToken=" + api_token)
 	.done(function(resp){
 		console.log(resp);
 		$("#calling tbody").empty();

@@ -30,7 +30,7 @@ window.addEventListener("load", function() {
 	}
 	
 	console.log("getting departures for " + crs);
-	$.ajax("https://huxley.apphb.com/departures/" + crs + "/25?accessToken=3c6cc25e-5d90-4be5-a3fb-7c05f05348c5")
+	$.ajax(api_url + "/departures/" + crs + "/25?accessToken=" + api_token)
 	.done(function(resp) {
 		if(resp.filtercrs){
 			$("#dep-for").text(resp.locationName + " (" + resp.crs + ") to " + resp.filterLocationName + " (" + resp.filtercrs + ")");

@@ -23,6 +23,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var processTime = function(time) {
 	if(time == "On time"){
 		return "on";
+	} else if(time == "No report"){
+		return "";
+	} else if(time == "Cancelled"){
+		return "cancelled";
+	} else if(time == "Delayed"){
+		return "delay";
 	} else {
 		return time;
 	}
