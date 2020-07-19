@@ -7,20 +7,32 @@
     <title>LiveTrains</title>
 
     <style>
-		h2 {
-			margin-top: 50px;
-		}
 		input {
 			font-size: 20px;
-			width: 50%
+			margin-left: 8%;
+            margin-right: 8%;
+            width: 84%
 		}
-		body {
+		h2 {
 			text-align: center;
+		}
+        .selected {
+            background-color: #666;
+        }
+        
+		#results p {
+			margin-left: 8%;
+            margin-right: 8%;
+            width: 84%;
+            padding: 5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
 		}
     </style>
 
     <script src="jquery.js" defer></script>
     <script src="app.js" defer></script>
+    <script src="crs.js" defer></script>
     <script src="index.js" defer></script>
 	
 	<link rel="stylesheet" href="styles.css">
@@ -29,9 +41,8 @@
   <body>
 	<div class="page-container">
 		<h2>Departures at</h2>
-		<form action="trains.html">
-			<p><input name="crs" type=text placeholder="crs" id="crs-input"></input></p>
-			<p>use crs.crs for filtering</p>
+        <p><input name="crs" type=text placeholder="station" id="crs-input"></input></p>
+        <div id=results></div>
 		</form>
 	</div>
 	<div class="nav-keys">
